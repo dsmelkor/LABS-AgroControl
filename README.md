@@ -1,14 +1,14 @@
 # Sistema automatico de riego para huerta
-##basado en ARDUINO con NodeMCU ESP8266 and an IoT app, the BLYNK.
+## basado en ARDUINO con NodeMCU ESP8266 and an IoT app, the BLYNK.
 
 
->Resumen: 
+> Resumen: 
 capturamos información de una plantación, temperatura y humedad , tanto del aire como del suelo. 
 En base a esos datos, el sistema decidirá la cantidad correcta que la plantación debe recibir calor y agua. 
 Además, el proyecto permite la intervención manual de un operador para controlar una bomba de agua y una lámpara eléctrica para generar calor para la plantación. 
 La intervención manual puede ser tanto local como remota a través de Internet.
 
-####Estos son las entradas:
+#### Estos son las entradas:
 Sensors:
   Air Temperature
   Air Relative Humidity
@@ -18,7 +18,7 @@ Buttons:
   Pump ON/OFF
   Lamp ON/OFF
 
-####Estas son las salidas del sistema:
+#### Estas son las salidas del sistema:
 Perisfericos:
   Relay for Pump control
   Relay for Lamp control
@@ -38,7 +38,7 @@ Data Storage
   
   Instalacion:
 '''
-OLED
+** OLED **
   Its is a I2C display, so we will connect it to the NodeMCU I2C pins, using:
 SCL ==> D1 (5)
 SDA ==> D2 (4)
@@ -46,7 +46,7 @@ The SSD1306 can be powered with 5V (external) or 3.3V directly from the NodeMCU 
 Once we have connected the display, let's download and install its library on our Arduino IDE. We will use the ACROBOT library version:
 https://github.com/acrobotic/Ai_Ardulib_SSD1306
 
-DHT22
+** DHT22 ** 
 VCC (we will connect to 3.3V from NodeMCU);
 Data out;
 Not connected and
@@ -55,7 +55,7 @@ Ground.
 The sensor should be powered between 3.3V and 5V and will work from -40oC to +80oC 
 https://github.com/adafruit/DHT-sensor-library
 
-MOISTURE SENSOR
+** MOISTURE SENSOR ** 
 The LM393 module has 2 outputs, one digital (D0) that can be set-up using the potentiometer that exist on it and an analog one (A0). This module can be sourced with 3.3V, what is very convenient when working with an NodeMCU. What we will do, is install the LM393 4 pins as bellow:
 
 LM393 A0 output to A0 NodeMCU A0 input
@@ -66,7 +66,7 @@ LM393 D0 open
 It's important to highlight that the correct is to connect the Sensor VCC to a Digital Pin as output, so the LM393 will be powered only when we need a read. This is important no only to save power, but also to protect the probes from corrosion.
 the NodeMCU did not worked well the soilMoisterVcc PIN connected, connect powered the LM393 direct to VCC (5V)
 
-TEMP SENSOR DS18B20
+** TEMP SENSOR DS18B20 ** 
 it good to use even over long distances! The sensor works from 3.0 to 5.0V.
 
 The sensor has 3 wires:
@@ -78,11 +78,11 @@ The sensor has 3 wires:
     1- OneWire  https://github.com/adafruit/ESP8266-Arduino/tree/esp8266/libraries/OneWire
     2 - DallasTemperature https://github.com/milesburton/Arduino-Temperature-Control-Library
  
- LEDs
+ ** LEDs ** 
  Note that LEDs connected on NodeMCU, are for testing only. They will "simulate", the Pump (Red LED) and the Lamp (Green LED). 
  For the final circuity the Relays will connected to those outputs as described on the next Step.
  
- BUTTONS
+ ** BUTTONS ** 
  Pump and/or Lamp. For that, three push-buttons will be incorporate to the project:
 
 RED: Pump Manual Ctrl
@@ -90,7 +90,7 @@ GREEN: Lamp manual Ctrl
 WHITE: Sensor Read Button (To update sensors, "light on" the OLED and present data 
 
 
-BLINK
+** BLINK ** 
 It is really very easy to built IoT projects using BLYNK. The first you need is to have the BLINK App installed on you phone its Library on the Arduino IDE. If you do not have them yet, please follow the bellow steps:
 
 Download BLYNK app for Apple Iphone or Google Android
