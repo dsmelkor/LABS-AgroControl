@@ -7,6 +7,10 @@
 #define TIME_PUMP_ON  15
 #define TIME_LAMP_ON  15
 
+
+/* Modulo DeepSleep */
+uint32_t SLEEP_TIME = 140e6;  // Tiempo en modo deep-sleep en microsegundos
+
 /* TIMER */
 #define READ_BUTTONS_TM   1L  // el termino L corresponde a Segundos
 #define READ_SOIL_TEMP_TM 2L  // 2L = 2 segundos 
@@ -14,6 +18,7 @@
 #define READ_AIR_DATA_TM  2L
 #define SEND_UP_DATA_TM   10L
 #define AUTO_CTRL_TM      60L     
+#define DEEP_SLEEP_TM     300L  
 
 /* OLED */
 boolean turnOffOLED = 1;

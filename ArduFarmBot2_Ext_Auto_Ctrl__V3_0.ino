@@ -10,6 +10,7 @@
  *  Se muestra la configuracion automatica al iniciar el display
  *  Los datos de sensores se envian a BLYNK
  *  Los comandos de contros son recibidos desde BLYNK
+ *  Deepsleep, El tiempo que está el microprocesador en reposo es de 140*10^6 us = 140 segundos.
  *  
  *  Descargas, tutoriales y docs: http://www.blynk.cc
  *  Blynk licensed under MIT license
@@ -28,10 +29,6 @@ WidgetLED PUMPs(V0);  // Feedback de señales de sensores en Blynk App
 WidgetLED PUMPa(V5); //  Feedback de señales de controles en Blynk App
 WidgetLED LAMPs(V1);  // Feedback de señales de sensores en Blynk App
 WidgetLED LAMPa(V6); //  Feedback de señales de controles en Blynk App
-
-
-/* Modulo DeepSleep */
-uint32_t SLEEP_TIME = 140e6;  // Tiempo en modo deep-sleep en microsegundos
 
 
 /* TIMER */

@@ -23,7 +23,7 @@ void startTimers(void)
   timer.setInterval(SEND_UP_DATA_TM*1000, sendUptime);
   timer.setInterval(AUTO_CTRL_TM*1000, autoControlPlantation);
     //timer.setInterval(DISPLAY_DATA_TM*1000, displayData);
-  timer.setInterval(DEEP_SLEEP*1000, deepSleep);
+  timer.setInterval(DEEP_SLEEP_TM*1000, deepSleep);
 }
 
 /***************************************************
