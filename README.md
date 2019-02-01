@@ -7,35 +7,57 @@ capturamos información de una plantación, temperatura y humedad , tanto del ai
 En base a esos datos, el sistema decidirá la cantidad correcta que la plantación debe recibir calor y agua. 
 Además, el proyecto permite la intervención manual de un operador para controlar una bomba de agua y una lámpara eléctrica para generar calor para la plantación. 
 La intervención manual puede ser tanto local como remota a través de Internet.
-
 #### Estos son las entradas:
+
 Sensors:
-  Air Temperature
-  Air Relative Humidity
-  Soil Temperature
-  Soil Moisture (humidity)
+ Air Temperature
+ Air Relative 
+ Humidity Soil 
+ Temperature Soil 
+ Moisture (humidity)
+
+
 Buttons:
-  Pump ON/OFF
-  Lamp ON/OFF
+  
+Pump ON/OFF
+  
+Lamp ON/OFF
+
+
 
 #### Estas son las salidas del sistema:
+
 Perisfericos:
-  Relay for Pump control
-  Relay for Lamp control
+  
+Relay for Pump control
+  
+Relay for Lamp control
+
+
 
 Avisos:
-  Mensajes automaticos enviados como eventos:
-    Pump ON
-    Lamo On
-    System Offline
+  
+Mensajes automaticos enviados como eventos:
     
+Pump ON
+    
+Lamp On
+    
+System Offline
+    
+
+
 Datos del Display:
-  Datos digitales y analogos mostrados en pantalla
   
+Datos digitales y analogos mostrados en pantalla
+  
+
+
 Data Storage
-  Estos datos se deberan guardar en un repo remoto
   
-  
+Estos datos se deberan guardar en un repo remoto
+ 
+
 ###  Instalacion:
 '''
 ** OLED **
