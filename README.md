@@ -55,4 +55,4 @@ Data Storage
  
 ***
 
-(Aqui la info extra necesaria para la instalación) [https://github.com/desarrollo-sandiego/LABS-AgroControl/wiki] 
+[Aqui la info extra necesaria para la instalación - WIKI](https://github.com/desarrollo-sandiego/LABS-AgroControl/wiki) 
