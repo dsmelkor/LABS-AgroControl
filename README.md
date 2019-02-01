@@ -41,6 +41,8 @@ Mensajes automaticos enviados como eventos:
 - Lamp On
 - System Off line
     
+    
+    
 Datos del Display:
 
 - Datos digitales y analogos mostrados en pantalla
