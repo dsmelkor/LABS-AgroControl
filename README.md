@@ -1,5 +1,5 @@
 # Sistema automatico de riego para huerta
-## basado en ARDUINO con NodeMCU ESP8266 and an IoT app, the BLYNK.
+ basado en ARDUINO con NodeMCU ESP8266 and an IoT app, the BLYNK.
 
 
 > Resumen: 
@@ -36,7 +36,7 @@ Data Storage
   Estos datos se deberan guardar en un repo remoto
   
   
-  Instalacion:
+###  Instalacion:
 '''
 ** OLED **
   Its is a I2C display, so we will connect it to the NodeMCU I2C pins, using:
