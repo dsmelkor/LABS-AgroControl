@@ -11,25 +11,25 @@ La intervención manual puede ser tanto local como remota a través de Internet.
 
 Sensors:
 
- -Air Temperature
- -Air Relative 
- -Humidity Soil 
- -Temperature Soil 
- -Moisture (humidity)
+ - Air Temperature
+ - Air Relative 
+ - Humidity Soil 
+ - Temperature Soil 
+ - Moisture (humidity)
 
 
 Buttons:
 
--Pump ON/OFF
--Lamp ON/OFF
+- Pump ON/OFF
+- Lamp ON/OFF
 
 
 #### Estas son las salidas del sistema:
 
 Perisfericos:
   
--Relay for Pump control
--Relay for Lamp control
+- Relay for Pump control
+- Relay for Lamp control
 
 
 
@@ -37,18 +37,19 @@ Avisos:
   
 Mensajes automaticos enviados como eventos:
     
--Pump ON
--Lamp On
--System Off line
+- Pump ON
+- Lamp On
+- System Off line
     
--Datos del Display:
--Datos digitales y analogos mostrados en pantalla
+Datos del Display:
+
+- Datos digitales y analogos mostrados en pantalla
   
 
 
 Data Storage
   
-Estos datos se deberan guardar en un repo remoto
+- Estos datos se deberan guardar en un repo remoto
  
 
 ###  Instalacion:
