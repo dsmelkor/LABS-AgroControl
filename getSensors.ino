@@ -1,5 +1,5 @@
 /***************************************************
- * Get DHT data
+ * Obteniendo datos DHT 
  **************************************************/
 void getDhtData(void)
 {
@@ -7,9 +7,9 @@ void getDhtData(void)
   float humIni = airHum;
   airTemp = dht.readTemperature();
   airHum = dht.readHumidity();
-  if (isnan(airHum) || isnan(airTemp))   // Check if any reads failed and exit early (to try again).
+  if (isnan(airHum) || isnan(airTemp))   // Comprueba si alguna de las lecturas ha fallado y sale antes (para intentarlo de nuevo).
   {
-    Serial.println("Failed to read from DHT sensor!");
+    Serial.println("falla en leer sensor DHT!");
     airTemp = tempIni;
     airHum = humIni;
     return;
@@ -17,7 +17,7 @@ void getDhtData(void)
 }
 
 /***************************************************
- * Get Soil Moister Sensor data
+ * Obteniendo datos del sensor de Humedad de suelo
  **************************************************/
 void getSoilMoisterData(void)
 {
@@ -25,7 +25,7 @@ void getSoilMoisterData(void)
   digitalWrite (soilMoisterVcc, HIGH);
   delay (500);
   int N = 3;
-  for(int i = 0; i < N; i++) // read sensor "N" times and get the average
+  for(int i = 0; i < N; i++) // leyendo sensor "N" veces y obteniendo promedio
   {
     soilMoister += analogRead(soilMoisterPin);   
     delay(150);
@@ -36,13 +36,13 @@ void getSoilMoisterData(void)
 } 
 
 /***************************************************
- * Get SoilTemp sensor data
+ * Obteniendo Temperatura del suelo
  **************************************************/
 void getSoilTempData()
 {
   DS18B20.requestTemperatures(); 
   soilTemp = DS18B20.getTempCByIndex(0);
 
-  int newData = ((soilTemp + 0.05) * 10); //fix soilTemp value to 1 decimal place.
+  int newData = ((soilTemp + 0.05) * 10); // Fija el valor del suelo a 1 decimal.
   soilTemp = (newData / 10.0);
 }

@@ -1,19 +1,20 @@
 /***************************************************************************************************************
- *  ArduFarmBot using NodeMCU ESP-12 Develop Kit V1.0
+ *  AgroControl utiliza NodeMCU ESP-12 Develop Kit V1.0
  *  DHT se conecta a NodeMCU pin D3 (Temperatura Ambiente y Humedad Relativa)
  *  Humedad de Suelo se conecta a A0
  *  los datos de sensores se visualizan en Display OLED
- *  Los comandos en el Microcontrolador son mediante los botones 
- *  OLED Display por defecto estará apagado. Hay que presionar el boton de Sensores para sensar y visualizar en el Display
- *  nueva funcion "waitButtonPress (int waitTime)", para parar el Loop inicial
- *  Automatic Local Control
+ *  Los comandos en el control son mediante botones 
+ *  OLED Display por defecto estará apagado. 
+ *  Presionar el boton de sensores para tomar datos y visualizarlos en el Display
+ *  Nueva funcion "waitButtonPress (int waitTime)", para parar el Loop inicial
  *  Se muestra la configuracion automatica al iniciar el display
- *  los datos de sensores se envian a BLYNK
- *  los comandos de contros son recibidos desde BLYNK
+ *  Los datos de sensores se envian a BLYNK
+ *  Los comandos de contros son recibidos desde BLYNK
+ *  
  *  Descargas, tutoriales y docs: http://www.blynk.cc
  *  Blynk licensed under MIT license
  *       
- *  Basado en un proyecto de MJRoBot Version 3.0 - Automatic and Remote Control Developed by MJRovai 
+ *  Modificado por DSMELKOR Basado en proyecto "Automatic and Remote Control Developed by MJRovai"
  ********************************************************************************************************************************/
 #define SW_VERSION "   SW Ver. 3.0" // VErsion a mostrar en el Display
 #include "stationDefines.h"       //   Definiciones del proyecto
@@ -28,6 +29,11 @@ WidgetLED PUMPa(V5); //  Feedback de señales de controles en Blynk App
 WidgetLED LAMPs(V1);  // Feedback de señales de sensores en Blynk App
 WidgetLED LAMPa(V6); //  Feedback de señales de controles en Blynk App
 
+
+/* Modulo DeepSleep */
+uint32_t SLEEP_TIME = 140e6;  // Tiempo en modo deep-sleep en microsegundos
+
+
 /* TIMER */
 #include <SimpleTimer.h>
 SimpleTimer timer;
@@ -41,7 +47,7 @@ SimpleTimer timer;
 #include "DHT.h"
 DHT dht(DHTPIN, DHTTYPE);
 
-/* DS18B20 Temperature Sensor */
+/* DS18B20  Sensor de Temperatura */
 #include <OneWire.h>
 #include <DallasTemperature.h>
 OneWire oneWire(ONE_WIRE_BUS);
@@ -87,7 +93,7 @@ void loop()
 }
 
 /****************************************************************
-* Read remote commands 
+* Leer comandos remotos 
 ****************************************************************/
 BLYNK_WRITE(3) // Control remoto de la Bomba
 {
@@ -99,7 +105,7 @@ BLYNK_WRITE(3) // Control remoto de la Bomba
   }
 }
 
-BLYNK_WRITE(4) // Control remoro de la Lampara
+BLYNK_WRITE(4) // Control remoto de la Lampara
 {
   int i=param.asInt();
   if (i==1) 
@@ -110,7 +116,7 @@ BLYNK_WRITE(4) // Control remoro de la Lampara
 }
 
 /****************************************************************
-* Read local commands (Pump and Lamp buttons are normally "HIGH"):
+* Leer comandos Locales (Boton de bomba y lampara normalmente abiertos "HIGH"):
 ****************************************************************/
 void readLocalCmd() 
 {  
@@ -146,7 +152,7 @@ void readLocalCmd()
 }
 
 /***************************************************
-* Receive Commands and act on actuators
+* Recibiendo comandos y notificando a Blink y activando perisfericos
 ****************************************************/
 void aplyCmd()
 {
@@ -181,10 +187,23 @@ void aplyCmd()
         LAMPs.off();
         LAMPa.off();
       }
+
+  if (deepSleepStatus == 1)
+  {
+    //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RF_DEFAULT); // Calibración de señal de radio si es necesario 
+    ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RFCAL);      // Calibración de señal de radio siempre
+    //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_NO_RFCAL);   // Sin calibración de la señal de radio
+    //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RF_DISABLED);  // Desabilita la señal de radio después del reencendido
+
+  }
+  else
+      {
+        Blynk.notify("agroControl: Warning ==>> deepSleep OFF");
+      }
 }
 
 /***************************************************
-* Automatically Control the Plantation based on sensors reading
+* Control Automatico basado en la lectura de sensores
 ****************************************************/
 void autoControlPlantation(void)
 { 
@@ -200,7 +219,7 @@ void autoControlPlantation(void)
 }
 
 /***************************************************
-* Turn Pump On for a certain amount of time
+* Encendiendo bomba por un cierto tiempo 
 ****************************************************/
 void turnPumpOn()
 {
@@ -212,7 +231,7 @@ void turnPumpOn()
 }
 
 /***************************************************
-* Turn Lamp On for a certain amount of time 
+* Encendiendo lámpara por un cierto tiempo 
 ****************************************************/
 void turnLampOn()
 {
@@ -224,7 +243,7 @@ void turnLampOn()
 }
 
 /***************************************************
- * Send data to Blynk
+ * Enviando datos a Blink
  **************************************************/
 void sendUptime()
 {
@@ -232,4 +251,16 @@ void sendUptime()
   Blynk.virtualWrite(11, String(airTemp, 1) + " ºC");  // Mostrando con un solo decimal y agregando letra C
   Blynk.virtualWrite(12, soilMoister); // virtual pin V12
   Blynk.virtualWrite(13, soilTemp); //virtual pin V13
+}
+
+/***************************************************
+ * Durmiendo la bestia (uControlador)
+ **************************************************/
+void deepsleep()
+{
+  pumpStatus = 0;
+  aplyCmd();
+    delay (TIME_LAMP_ON*1000);
+  deepSleepStatus = 1;
+  aplyCmd()
 }

@@ -1,6 +1,6 @@
 
 /***************************************************
-* Wait Button to be pressed a defined time in seconds
+* Espera del botón, para eliminar efecto rebote
 ****************************************************/
 void waitButtonPress (int waitTime)
 {
@@ -12,7 +12,7 @@ void waitButtonPress (int waitTime)
 }
 
 /***************************************************
-* Starting Timers
+* Iniciando Timers
 ****************************************************/
 void startTimers(void)
 {
@@ -22,11 +22,12 @@ void startTimers(void)
   timer.setInterval(READ_SOIL_HUM_TM*1000, getSoilMoisterData);
   timer.setInterval(SEND_UP_DATA_TM*1000, sendUptime);
   timer.setInterval(AUTO_CTRL_TM*1000, autoControlPlantation);
-  //timer.setInterval(DISPLAY_DATA_TM*1000, displayData);
+    //timer.setInterval(DISPLAY_DATA_TM*1000, displayData);
+  timer.setInterval(DEEP_SLEEP*1000, deepSleep);
 }
 
 /***************************************************
-* Debouncing a key
+* eliminar efecto rebote en entradas
 ****************************************************/
 boolean debounce(int pin)
 {

@@ -1,12 +1,12 @@
 /***************************************************
- * Start OLED
+ * Iniciando OLED
  **************************************************/
 void oledStart(void)
 {
   Wire.begin();  
   oled.init();                      // Inicializando SSD1306 OLED display
   clearOledDisplay();
-  //oled.setFont(font5x7);            // Seteando tipo de fuente (default 8x8)
+  //oled.setFont(font5x7);          //   Seteando tipo de fuente (default 8x8)
   oled.clearDisplay();              //   Limpiando Pantalla
   
   oled.setTextXY(0,0); oled.putString("    SANDIEGO");
@@ -26,7 +26,7 @@ void oledStart(void)
 }
 
 /***************************************************
- * Display data at Serial Monitora & OLED Display
+ * Mosatrando datos en Display OLED
  **************************************************/
 void displayData(void)
 { 
@@ -67,7 +67,7 @@ void displayData(void)
 }
 
 /***************************************************
- * Clear OLED Display
+ * Borrando pantalla OLED
  **************************************************/
 void clearOledDisplay()
 {

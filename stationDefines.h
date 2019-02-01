@@ -1,5 +1,5 @@
 
-/* Automatic Control Parameters Definition */
+/* Parametros de Control Automatico */
 #define DRY_SOIL      15
 #define WET_SOIL      66
 #define COLD_TEMP     12
@@ -8,8 +8,8 @@
 #define TIME_LAMP_ON  15
 
 /* TIMER */
-#define READ_BUTTONS_TM   1L  // definitions in seconds
-#define READ_SOIL_TEMP_TM 2L
+#define READ_BUTTONS_TM   1L  // el termino L corresponde a Segundos
+#define READ_SOIL_TEMP_TM 2L  // 2L = 2 segundos 
 #define READ_SOIL_HUM_TM  10L
 #define READ_AIR_DATA_TM  2L
 #define SEND_UP_DATA_TM   10L
@@ -25,12 +25,12 @@ boolean turnOffOLED = 1;
 float airHum = 0;
 float airTemp = 0;
 
-/* Soil Moister */
+/*  Humedad de Suelo */
 #define soilMoisterPin A0
 #define soilMoisterVcc D8
 int soilMoister = 0;
 
-/* DS18B20 Temperature Sensor */
+/* DS18B20 Sensor de Temperatura */
 #define ONE_WIRE_BUS 14 // DS18B20 en NodeMCU pin D5 corresponde to GPIO 014 on Arduino
 float soilTemp;
 
@@ -40,7 +40,7 @@ float soilTemp;
 boolean pumpStatus = 0;
 boolean lampStatus = 0;
 
-/* Buttons */
+/* Botones */
 #define PUMP_ON_BUTTON D9        //push-button BOMBA (Red)
 #define LAMP_ON_BUTTON D10       //push-button LAMPARA (Green)
-#define SENSORS_READ_BUTTON D4   //push-button SENSOR (yellow)
+#define SENSORS_READ_BUTTON D4   //push-button SENSOR (White)
