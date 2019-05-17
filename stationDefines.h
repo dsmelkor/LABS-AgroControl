@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-
-
 /* Parametros de Control Automatico */
 #define DRY_SOIL      15
 #define WET_SOIL      66
