@@ -17,7 +17,8 @@ uint32_t SLEEP_TIME = 140e6;  // Tiempo en modo deep-sleep en microsegundos
 #define READ_AIR_DATA_TM  2L
 #define SEND_UP_DATA_TM   10L
 #define AUTO_CTRL_TM      60L     
-#define DEEP_SLEEP_TM     300L  
+#define DEEP_SLEEP_TM     30L  
+
 
 
 /* OLED */
@@ -45,9 +46,13 @@ float soilTemp;
 #define LAMP_PIN D7              //LAMP (Green LED)
 boolean pumpStatus = 0;
 boolean lampStatus = 0;
+boolean deepSleepStatus = 0;
 
 
 /* Botones */
 #define PUMP_ON_BUTTON D9        //push-button BOMBA (Red)
 #define LAMP_ON_BUTTON D10       //push-button LAMPARA (Green)
 #define SENSORS_READ_BUTTON D4   //push-button SENSOR (White)
+
+/* DeepSleep */
+uint32_t TIEMPO_DeepSleep = 5e6;  // Tiempo en modo deep-sleep en microsegundos

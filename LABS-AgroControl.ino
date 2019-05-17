@@ -9,7 +9,7 @@
  *  Nueva funcion "waitButtonPress (int waitTime)", para parar el Loop inicial
  *  Se muestra la configuracion automatica al iniciar el display
  *  Los datos de sensores se envian a BLYNK
- *  Los comandos de contros son recibidos desde BLYNK
+ *  Los comandos de contros son recibidos desde BLYNK}
  *  Deepsleep, El tiempo que está el microprocesador en reposo es de 140*10^6 us = 140 segundos.
  *  
  *  Descargas, tutoriales y docs: http://www.blynk.cc
@@ -253,11 +253,10 @@ void sendUptime()
 /***************************************************
  * Durmiendo la bestia (uControlador)
  **************************************************/
-void deepsleep()
+void deepSleep1()
 {
   pumpStatus = 0;
   aplyCmd();
-    delay (TIME_LAMP_ON*1000);
   deepSleepStatus = 1;
-  aplyCmd()
+  aplyCmd();
 }
