@@ -30,8 +30,6 @@ WidgetLED PUMPa(V5); //  Feedback de señales de controles en Blynk App
 WidgetLED LAMPs(V1);  // Feedback de señales de sensores en Blynk App
 WidgetLED LAMPa(V6); //  Feedback de señales de controles en Blynk App
 
-WidgetLED DRY(V7);  // Feedback de señales de sensores en Blynk App
-WidgetLED WET(V8); //  Feedback de señales de controles en Blynk App
 
 
 /* TIMER */
@@ -55,7 +53,7 @@ DallasTemperature DS18B20(&oneWire);
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(10);
   Serial.println("agroContro");
   Serial.println(".... comenzando Setup");
@@ -114,7 +112,20 @@ BLYNK_WRITE(4) // Control remoto de la Lampara
     aplyCmd();
   }
 }
-
+// This function will be called every time Slider Widget
+// in Blynk app writes values to the Virtual Pin 7
+BLYNK_WRITE(V7)
+{
+  int DRY_SOIL = param.asInt(); // assigning incoming value from pin V7 to a variable
+  Serial.print("V7 Slider value is: ");
+  Serial.println(DRY_SOIL);
+}
+BLYNK_WRITE(V8)
+{
+  int WET_SOIL = param.asInt(); // assigning incoming value from pin V8 to a variable
+  Serial.print("V8 Slider value is: ");
+  Serial.println(WET_SOIL);
+}
 /****************************************************************
 * Leer comandos Locales (Boton de bomba y lampara normalmente abiertos "HIGH"):
 ****************************************************************/
@@ -191,7 +202,7 @@ void aplyCmd()
   if (deepSleepStatus == 1)
   {
     //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RF_DEFAULT); // Calibración de señal de radio si es necesario 
-    ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RFCAL);      // Calibración de señal de radio siempre
+    //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RFCAL);      // Calibración de señal de radio siempre
     //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_NO_RFCAL);   // Sin calibración de la señal de radio
     //ESP.deepSleep(TIEMPO_DeepSleep, WAKE_RF_DISABLED);  // Desabilita la señal de radio después del reencendido
 
@@ -251,6 +262,8 @@ void sendUptime()
   Blynk.virtualWrite(11, String(airTemp, 1) + " ºC");  // Mostrando con un solo decimal y agregando letra C
   Blynk.virtualWrite(12, soilMoister); // virtual pin V12
   Blynk.virtualWrite(13, soilTemp); //virtual pin V13
+  Blynk.virtualWrite(4, DRY_SOIL); // virtual pin V4
+  Blynk.virtualWrite(2, WET_SOIL); //virtual pin V2
 }
 
 /***************************************************
