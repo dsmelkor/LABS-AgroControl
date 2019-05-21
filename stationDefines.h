@@ -1,6 +1,6 @@
 /* Parametros de Control Automatico */
-#define DRY_SOIL      15
-#define WET_SOIL      66
+int DRY_SOIL = 15;
+int WET_SOIL = 66;
 #define COLD_TEMP     12
 #define HOT_TEMP      26
 #define TIME_PUMP_ON  30
