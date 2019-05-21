@@ -30,6 +30,9 @@ WidgetLED PUMPa(V5); //  Feedback de señales de controles en Blynk App
 WidgetLED LAMPs(V1);  // Feedback de señales de sensores en Blynk App
 WidgetLED LAMPa(V6); //  Feedback de señales de controles en Blynk App
 
+WidgetLED DRY(V7);  // Feedback de señales de sensores en Blynk App
+WidgetLED WET(V8); //  Feedback de señales de controles en Blynk App
+
 
 /* TIMER */
 #include <SimpleTimer.h>
