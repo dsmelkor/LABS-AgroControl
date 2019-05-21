@@ -114,16 +114,18 @@ BLYNK_WRITE(4) // Control remoto de la Lampara
 }
 // This function will be called every time Slider Widget
 // in Blynk app writes values to the Virtual Pin 7
-BLYNK_WRITE(V7)
+BLYNK_WRITE(7)
 {
-  int DRY_SOIL = param.asInt(); // assigning incoming value from pin V7 to a variable
+  int DRY_SOIL_V7 = param.asInt(); // assigning incoming value from pin V7 to a variable
   Serial.print("V7 Slider value is: ");
+  DRY_SOIL = DRY_SOIL_V7;
   Serial.println(DRY_SOIL);
 }
-BLYNK_WRITE(V8)
+BLYNK_WRITE(8)
 {
-  int WET_SOIL = param.asInt(); // assigning incoming value from pin V8 to a variable
+  int WET_SOIL_V8 = param.asInt(); // assigning incoming value from pin V8 to a variable
   Serial.print("V8 Slider value is: ");
+  WET_SOIL = WET_SOIL_V8;
   Serial.println(WET_SOIL);
 }
 /****************************************************************
@@ -262,7 +264,7 @@ void sendUptime()
   Blynk.virtualWrite(11, String(airTemp, 1) + " ºC");  // Mostrando con un solo decimal y agregando letra C
   Blynk.virtualWrite(12, soilMoister); // virtual pin V12
   Blynk.virtualWrite(13, soilTemp); //virtual pin V13
-  Blynk.virtualWrite(4, DRY_SOIL); // virtual pin V4
+  Blynk.virtualWrite(1, DRY_SOIL); // virtual pin V4
   Blynk.virtualWrite(2, WET_SOIL); //virtual pin V2
 }
 
