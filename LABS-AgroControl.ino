@@ -17,7 +17,7 @@
  *       
  *  Modificado por DSMELKOR Basado en proyecto "Automatic and Remote Control Developed by MJRovai"
  ********************************************************************************************************************************/
-#define SW_VERSION "   SW Ver. 3.0" // VErsion a mostrar en el Display
+#define SW_VERSION "   SW Ver. 3.1" // VErsion a mostrar en el Display
 #include "stationDefines.h"       //   Definiciones del proyecto
 #include "stationCredentials.h"   // Credenciales de acceso Blynk
 
@@ -53,12 +53,13 @@ DallasTemperature DS18B20(&oneWire);
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(10);
   Serial.println("agroContro");
   Serial.println(".... comenzando Setup");
   Serial.println(" ");
 
+  pinMode(POWER_BUTTON, OUTPUT);
   pinMode(PUMP_PIN, OUTPUT);
   pinMode(LAMP_PIN, OUTPUT);
   pinMode(PUMP_ON_BUTTON, INPUT_PULLUP);
@@ -66,7 +67,7 @@ void setup()
   pinMode(SENSORS_READ_BUTTON, INPUT_PULLUP);
   pinMode(soilMoisterVcc, OUTPUT);
   
-  Blynk.begin(auth, ssid, pass);
+  Blynk.begin(auth, ssid, password);
   oledStart();
   dht.begin();
   DS18B20.begin();
@@ -81,7 +82,8 @@ void setup()
   
   waitButtonPress (SHOW_SET_UP); // esperando para que un boton sea presionado 
   oled.clearDisplay();
-  startTimers();
+  startTimers(); 
+  digitalWrite(POWER_BUTTON, HIGH);
 }
 
 void loop()
@@ -120,6 +122,7 @@ BLYNK_WRITE(7)
   Serial.print("V7 Slider value is: ");
   DRY_SOIL = DRY_SOIL_V7;
   Serial.println(DRY_SOIL);
+  digitalWrite(POWER_BUTTON, HIGH);
 }
 BLYNK_WRITE(8)
 {
@@ -260,12 +263,13 @@ void turnLampOn()
  **************************************************/
 void sendUptime()
 {
-  Blynk.virtualWrite(10, String(airHum,2) + " %");     // Mostrando con un solo decimal y agregando letra C
-  Blynk.virtualWrite(11, String(airTemp, 1) + " ºC");  // Mostrando con un solo decimal y agregando letra C
+  Blynk.virtualWrite(10, String(airHum) + " %");     // Mostrando con un solo decimal y agregando letra C
+  Blynk.virtualWrite(11, String(airTemp) + " ºC");  // Mostrando con un solo decimal y agregando letra C
   Blynk.virtualWrite(12, soilMoister); // virtual pin V12
   Blynk.virtualWrite(13, soilTemp); //virtual pin V13
-  Blynk.virtualWrite(1, DRY_SOIL); // virtual pin V4
-  Blynk.virtualWrite(2, WET_SOIL); //virtual pin V2
+  Blynk.virtualWrite(14, DRY_SOIL); // virtual pin V14
+  Blynk.virtualWrite(15, WET_SOIL); //virtual pin V2
+  Blynk.virtualWrite(2, airTemp,airHum,soilTemp,soilMoister); //virtual pin V2
 }
 
 /***************************************************

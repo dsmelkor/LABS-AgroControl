@@ -59,11 +59,12 @@ void displayData(void)
   oled.setTextXY(6,8); oled.putString(String(soilMoister));
   oled.setTextXY(6,14); oled.putString(" %");
 
-  oled.setTextXY(7,0); oled.putString("BMB ");
-  oled.setTextXY(7,4); oled.putString(pumpStatusStr);
+  oled.setTextXY(7,0); oled.putString("Riego <= ");
+  oled.setTextXY(7,10); oled.putString("         ");
+  oled.setTextXY(7,11); oled.putString(String(DRY_SOIL));
 
-  oled.setTextXY(7,7); oled.putString("  LUZ ");
-  oled.setTextXY(7,13); oled.putString(lampStatusStr);
+ // oled.setTextXY(7,7); oled.putString("  WET ");
+ // oled.setTextXY(7,14); oled.putString(String(WET_SOIL));
 }
 
 /***************************************************

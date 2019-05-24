@@ -1,9 +1,9 @@
 /* Parametros de Control Automatico */
-int DRY_SOIL = 16;
+int DRY_SOIL = 25;
 int WET_SOIL = 60;
 #define COLD_TEMP     12
 #define HOT_TEMP      26
-#define TIME_PUMP_ON  30
+#define TIME_PUMP_ON  60
 #define TIME_LAMP_ON  15
 
 
@@ -27,7 +27,8 @@ boolean turnOffOLED = 1;
 
 /* DHT22*/
 #define DHTPIN D3  
-#define DHTTYPE DHT22 
+//#define DHTTYPE DHT22 
+#define DHTTYPE DHT11 
 float airHum = 0;
 float airTemp = 0;
 
@@ -56,3 +57,5 @@ boolean deepSleepStatus = 0;
 
 /* DeepSleep */
 uint32_t TIEMPO_DeepSleep = 5e6;  // Tiempo en modo deep-sleep en microsegundos
+
+#define POWER_BUTTON D0        //encendido
