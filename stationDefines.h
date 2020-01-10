@@ -17,7 +17,7 @@ uint32_t SLEEP_TIME = 140e6;  // Tiempo en modo deep-sleep en microsegundos
 #define READ_AIR_DATA_TM  2L
 #define SEND_UP_DATA_TM   10L
 #define AUTO_CTRL_TM      60L     
-#define DEEP_SLEEP_TM     30L  
+#define DEEP_SLEEP_TM     60L  // un minuto
 
 
 
@@ -56,6 +56,6 @@ boolean deepSleepStatus = 0;
 #define SENSORS_READ_BUTTON D4   //push-button SENSOR (White)
 
 /* DeepSleep */
-uint32_t TIEMPO_DeepSleep = 5e6;  // Tiempo en modo deep-sleep en microsegundos
+uint32_t TIEMPO_DeepSleep = 5e6;  // setea Tiempo deep-sleep en microsegundos
 
 #define POWER_BUTTON D0        //encendido

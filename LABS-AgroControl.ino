@@ -17,7 +17,7 @@
  *       
  *  Modificado por DSMELKOR Basado en proyecto "Automatic and Remote Control Developed by MJRovai"
  ********************************************************************************************************************************/
-#define SW_VERSION "   SW Ver. 3.1" // VErsion a mostrar en el Display
+#define SW_VERSION "   SW Ver. 3.1" // VErsion a mostrar en el Display 10/01/2020
 #include "stationDefines.h"       //   Definiciones del proyecto
 #include "stationCredentials.h"   // Credenciales de acceso Blynk
 
@@ -53,7 +53,7 @@ DallasTemperature DS18B20(&oneWire);
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(10);
   Serial.println("agroContro");
   Serial.println(".... comenzando Setup");
@@ -67,7 +67,7 @@ void setup()
   pinMode(SENSORS_READ_BUTTON, INPUT_PULLUP);
   pinMode(soilMoisterVcc, OUTPUT);
   
-  Blynk.begin(auth, ssid, password);
+  Blynk.begin(auth, ssid, pass);
   oledStart();
   dht.begin();
   DS18B20.begin();

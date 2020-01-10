@@ -1,14 +1,10 @@
 /***************************************************
  * Configurando clave Blink y acceso WIFI
+ * 24c8117bc6004fac9e828f1428e12a7c
  **************************************************/
  
-char auth[] = "24c8117bc6004fac9e828f1428e12a7c"; // Blynk project: "agroControl"
+char auth[] = "c5e6e8e208e641f388dc7cbf528a7e5b"; // Blynk project: "agroControl"
 
 
-#ifndef STASSID
-#define STASSID "CADY"
-#define STAPSK  "Caro7972"
-#endif
-
-const char* ssid     = STASSID;
-const char* password = STAPSK;
+char ssid[] = "SANDIEGO-INVITADO";
+char pass[] = "ABCDEFABCD";
